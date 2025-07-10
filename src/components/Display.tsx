@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Memory } from 'lucide-react';
+import { Database } from 'lucide-react';
 
 interface DisplayProps {
   display: string;
@@ -14,7 +14,7 @@ export const Display: React.FC<DisplayProps> = ({ display, expression, memory })
       {/* Memory indicator */}
       {memory !== 0 && (
         <div className="flex items-center gap-2 mb-2">
-          <Memory size={16} className="text-yellow-400" />
+          <Database size={16} className="text-yellow-400" />
           <span className="text-yellow-400 text-sm">M: {memory}</span>
         </div>
       )}
