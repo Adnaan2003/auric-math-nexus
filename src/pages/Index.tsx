@@ -1,11 +1,18 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState, useEffect, useCallback } from 'react';
+import { Calculator } from '@/components/Calculator';
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-gray-900 p-4">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-yellow-400 mb-2">
+            Futuristic Scientific Calculator
+          </h1>
+          <p className="text-gray-300">Advanced calculations with sleek design</p>
+        </div>
+        <Calculator />
       </div>
     </div>
   );
