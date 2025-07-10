@@ -1,7 +1,6 @@
-
 import React, { useState, useMemo } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from 'recharts';
-import { X, Function, AlertCircle } from 'lucide-react';
+import { X, Calculator, AlertCircle } from 'lucide-react';
 
 interface GraphPlotterProps {
   expression: string;
@@ -80,7 +79,7 @@ export const GraphPlotter: React.FC<GraphPlotterProps> = ({ expression, isDegree
       <div className="flex justify-between items-center mb-6 relative z-10">
         <div className="flex items-center gap-3">
           <div className="p-2 rounded-xl bg-gradient-to-br from-green-400/20 to-emerald-500/20 border border-green-500/30">
-            <Function className="text-green-400" size={20} />
+            <Calculator className="text-green-400" size={20} />
           </div>
           <div>
             <h3 className="text-green-400 font-bold text-lg">Function Plotter</h3>
