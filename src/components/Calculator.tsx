@@ -16,12 +16,17 @@ export const Calculator = () => {
   const [showHistory, setShowHistory] = useState(false);
   const [memory, setMemory] = useState(0);
   const [lastResult, setLastResult] = useState(0);
+  const [waitingForOperand, setWaitingForOperand] = useState(false);
 
   // Safe evaluation function
   const safeEval = (expr: string): number => {
     try {
-      // Replace mathematical functions and constants
+      console.log('Evaluating expression:', expr);
+      
+      // Replace mathematical operators and functions
       let processedExpr = expr
+        .replace(/×/g, '*')  // Fix multiplication symbol
+        .replace(/÷/g, '/')  // Fix division symbol
         .replace(/π/g, Math.PI.toString())
         .replace(/e(?![0-9])/g, Math.E.toString())
         .replace(/sin\(/g, isDegrees ? 'Math.sin(Math.PI/180*' : 'Math.sin(')
@@ -34,7 +39,14 @@ export const Calculator = () => {
         .replace(/log\(/g, 'Math.log10(')
         .replace(/√\(/g, 'Math.sqrt(')
         .replace(/\^/g, '**')
-        .replace(/mod/g, '%');
+        .replace(/mod/g, '%')
+        .replace(/10\^\(/g, 'Math.pow(10,')
+        .replace(/e\^\(/g, 'Math.pow(Math.E,')
+        .replace(/x\^2/g, '**2')
+        .replace(/x\^3/g, '**3')
+        .replace(/x\^y/g, '**')
+        .replace(/1\/x/g, '1/')
+        .replace(/\|([^|]+)\|/g, 'Math.abs($1)');
 
       // Handle factorial
       processedExpr = processedExpr.replace(/(\d+)!/g, (match, num) => {
@@ -46,7 +58,11 @@ export const Calculator = () => {
         return result.toString();
       });
 
+      console.log('Processed expression:', processedExpr);
+      
       const result = Function('"use strict"; return (' + processedExpr + ')')();
+      console.log('Evaluation result:', result);
+      
       return typeof result === 'number' && !isNaN(result) ? result : 0;
     } catch (error) {
       console.error('Evaluation error:', error);
@@ -60,11 +76,15 @@ export const Calculator = () => {
     if (value === 'C') {
       setDisplay('0');
       setExpression('');
+      setWaitingForOperand(false);
     } else if (value === '⌫') {
       if (expression.length > 0) {
         const newExpr = expression.slice(0, -1);
         setExpression(newExpr);
         setDisplay(newExpr || '0');
+      } else if (display !== '0') {
+        const newDisplay = display.slice(0, -1) || '0';
+        setDisplay(newDisplay);
       }
     } else if (value === '=') {
       if (expression) {
@@ -75,15 +95,24 @@ export const Calculator = () => {
           setDisplay(result.toString());
           setExpression('');
           setLastResult(result);
+          setWaitingForOperand(true);
         } catch (error) {
           setDisplay('Error');
+          setExpression('');
         }
       }
     } else if (value === 'MC') {
       setMemory(0);
     } else if (value === 'MR') {
-      setDisplay(memory.toString());
-      setExpression(memory.toString());
+      const memValue = memory.toString();
+      if (waitingForOperand || display === '0') {
+        setDisplay(memValue);
+        setExpression(memValue);
+      } else {
+        setExpression(expression + memValue);
+        setDisplay(expression + memValue);
+      }
+      setWaitingForOperand(false);
     } else if (value === 'M+') {
       const current = parseFloat(display) || 0;
       setMemory(prev => prev + current);
@@ -91,15 +120,67 @@ export const Calculator = () => {
       const current = parseFloat(display) || 0;
       setMemory(prev => prev - current);
     } else if (value === 'Ans') {
-      const newExpr = expression + lastResult.toString();
-      setExpression(newExpr);
-      setDisplay(newExpr);
+      const ansValue = lastResult.toString();
+      if (waitingForOperand || display === '0') {
+        setDisplay(ansValue);
+        setExpression(ansValue);
+      } else {
+        setExpression(expression + ansValue);
+        setDisplay(expression + ansValue);
+      }
+      setWaitingForOperand(false);
+    } else if (['+', '-', '×', '÷', 'mod'].includes(value)) {
+      // Handle operators
+      if (expression && !waitingForOperand) {
+        // If there's already an expression, evaluate it first
+        try {
+          const result = safeEval(expression);
+          const newExpr = result.toString() + value;
+          setExpression(newExpr);
+          setDisplay(newExpr);
+          setLastResult(result);
+        } catch (error) {
+          setExpression(expression + value);
+          setDisplay(expression + value);
+        }
+      } else {
+        const newExpr = (display === '0' ? '' : display) + value;
+        setExpression(newExpr);
+        setDisplay(newExpr);
+      }
+      setWaitingForOperand(false);
+    } else if (value === '.') {
+      if (waitingForOperand) {
+        setDisplay('0.');
+        setExpression('0.');
+        setWaitingForOperand(false);
+      } else if (display.indexOf('.') === -1) {
+        const newValue = display + '.';
+        setDisplay(newValue);
+        setExpression(expression + '.');
+      }
+    } else if (/^\d$/.test(value)) {
+      // Handle numbers
+      if (waitingForOperand || display === '0') {
+        setDisplay(value);
+        setExpression(value);
+        setWaitingForOperand(false);
+      } else {
+        setDisplay(display + value);
+        setExpression(expression + value);
+      }
     } else {
-      const newExpr = display === '0' && !isNaN(Number(value)) ? value : expression + value;
-      setExpression(newExpr);
-      setDisplay(newExpr);
+      // Handle other functions and constants
+      if (waitingForOperand || display === '0') {
+        setDisplay(value);
+        setExpression(value);
+      } else {
+        setExpression(expression + value);
+        setDisplay(expression + value);
+      }
+      setWaitingForOperand(false);
     }
-  }, [display, expression, isDegrees, memory, lastResult]);
+  }, [display, expression, isDegrees, memory, lastResult, waitingForOperand]);
 
   // Keyboard support
   useEffect(() => {
@@ -132,12 +213,17 @@ export const Calculator = () => {
     <div className="flex flex-col lg:flex-row gap-6 max-w-6xl mx-auto">
       {/* Main Calculator */}
       <div className="flex-1">
-        <div className="bg-gray-800 rounded-2xl p-6 shadow-2xl border border-yellow-500/20">
+        <div className="bg-gray-800 rounded-2xl p-6 shadow-2xl border border-yellow-500/20 backdrop-blur-sm">
           {/* Header */}
           <div className="flex justify-between items-center mb-6">
-            <div className="flex items-center gap-2">
-              <CalcIcon className="text-yellow-400" size={24} />
-              <span className="text-yellow-400 font-semibold">Calculator</span>
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-lg bg-yellow-500/20">
+                <CalcIcon className="text-yellow-400" size={24} />
+              </div>
+              <div>
+                <h1 className="text-yellow-400 font-bold text-xl">FutureCalc</h1>
+                <p className="text-gray-400 text-xs">Scientific Calculator</p>
+              </div>
             </div>
             <div className="flex items-center gap-4">
               <ModeToggle
@@ -148,7 +234,7 @@ export const Calculator = () => {
               />
               <button
                 onClick={() => setShowHistory(!showHistory)}
-                className="p-2 rounded-lg bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30 transition-colors"
+                className="p-3 rounded-xl bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30 transition-all duration-200 border border-yellow-500/30 hover:scale-105"
               >
                 <HistoryIcon size={20} />
               </button>
@@ -182,6 +268,7 @@ export const Calculator = () => {
             onSelect={(value) => {
               setExpression(value);
               setDisplay(value);
+              setWaitingForOperand(false);
             }}
           />
         </div>

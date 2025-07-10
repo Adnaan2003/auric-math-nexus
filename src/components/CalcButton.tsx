@@ -17,18 +17,19 @@ export const CalcButton: React.FC<CalcButtonProps> = ({
 }) => {
   const baseClasses = cn(
     "rounded-xl font-semibold transition-all duration-200 transform active:scale-95",
-    "border border-yellow-500/30 shadow-lg hover:shadow-xl",
+    "border shadow-lg hover:shadow-xl hover:-translate-y-0.5",
     "focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50",
+    "backdrop-blur-sm",
     size === 'small' ? 'h-12 text-sm' : 'h-16 text-lg'
   );
 
   const variantClasses = {
-    number: "bg-gray-700 hover:bg-gray-600 text-yellow-100 hover:text-white",
-    operator: "bg-yellow-600 hover:bg-yellow-500 text-gray-900 font-bold",
-    equals: "bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold",
-    clear: "bg-red-600 hover:bg-red-500 text-white",
-    function: "bg-blue-600 hover:bg-blue-500 text-white text-xs",
-    memory: "bg-purple-600 hover:bg-purple-500 text-white text-xs"
+    number: "bg-gray-700/80 hover:bg-gray-600/80 text-yellow-100 hover:text-white border-gray-600/50 hover:border-yellow-500/50",
+    operator: "bg-gradient-to-br from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-gray-900 font-bold border-yellow-500/50 shadow-yellow-500/20",
+    equals: "bg-gradient-to-br from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-gray-900 font-bold border-yellow-400/50 shadow-yellow-400/30",
+    clear: "bg-gradient-to-br from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white border-red-500/50",
+    function: "bg-gradient-to-br from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white text-xs border-blue-500/50",
+    memory: "bg-gradient-to-br from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white text-xs border-purple-500/50"
   };
 
   return (
