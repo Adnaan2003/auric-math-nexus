@@ -9,21 +9,21 @@ interface ScientificKeypadProps {
 
 export const ScientificKeypad: React.FC<ScientificKeypadProps> = ({ onInput, isDegrees }) => {
   const scientificButtons = [
-    // Row 1 - Memory and Clear
+    // Row 1 - Memory and Clear functions
     ['MC', 'MR', 'M+', 'M-', 'C', '⌫'],
-    // Row 2 - Advanced functions
+    // Row 2 - Basic trigonometric functions
     ['sin(', 'cos(', 'tan(', 'ln(', 'log(', '÷'],
-    // Row 3 - More functions  
+    // Row 3 - Inverse trigonometric functions  
     ['asin(', 'acos(', 'atan(', 'e^(', '10^(', '×'],
-    // Row 4 - Powers and roots
-    ['x^2', 'x^3', 'x^y', '√(', '1/x', '-'],
-    // Row 5 - Constants and operations
+    // Row 4 - Power and root functions
+    ['x²', 'x³', 'x^y', '√(', '1/x', '-'],
+    // Row 5 - Constants and modulo
     ['π', 'e', '!', '|x|', 'mod', '+'],
-    // Row 6 - Parentheses and numbers
+    // Row 6 - Parentheses and numbers 7-9
     ['(', ')', 'Ans', '7', '8', '9'],
-    // Row 7 - Numbers
+    // Row 7 - Numbers 4-6 and 1-3
     ['4', '5', '6', '1', '2', '3'],
-    // Row 8 - Zero, decimal, equals
+    // Row 8 - Zero, decimal, and equals (spanning)
     ['0', '.', '=', '=', '=', '=']
   ];
 
@@ -45,7 +45,7 @@ export const ScientificKeypad: React.FC<ScientificKeypadProps> = ({ onInput, isD
   };
 
   return (
-    <div className="grid grid-cols-6 gap-3 p-4 bg-gray-800/30 rounded-2xl border border-gray-700/30">
+    <div className="grid grid-cols-6 gap-3 p-5 bg-gray-800/40 rounded-2xl border border-gray-700/40 backdrop-blur-sm">
       {scientificButtons.map((row, rowIndex) => 
         row.map((button, colIndex) => {
           if (button === '=' && rowIndex === 7 && colIndex > 2) return null;

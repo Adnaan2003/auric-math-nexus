@@ -20,7 +20,7 @@ export const CalcButton: React.FC<CalcButtonProps> = ({
     "border shadow-lg hover:shadow-xl hover:-translate-y-0.5",
     "focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-50",
     "backdrop-blur-sm relative overflow-hidden group",
-    size === 'small' ? 'h-12 text-sm' : 'h-16 text-lg'
+    size === 'small' ? 'h-14 text-base font-bold' : 'h-16 text-lg'
   );
 
   const variantClasses = {
@@ -34,9 +34,9 @@ export const CalcButton: React.FC<CalcButtonProps> = ({
     
     clear: "bg-gradient-to-br from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white border-red-500/50 shadow-red-500/30 hover:shadow-red-400/40",
     
-    function: "bg-gradient-to-br from-blue-600/90 to-blue-500/90 hover:from-blue-500/90 hover:to-blue-400/90 text-white text-xs border-blue-500/50 shadow-blue-600/30 hover:shadow-blue-500/40",
+    function: "bg-gradient-to-br from-blue-600/95 to-blue-700/95 hover:from-blue-500/95 hover:to-blue-600/95 text-white font-bold text-sm border-blue-500/60 shadow-blue-600/40 hover:shadow-blue-500/50",
     
-    memory: "bg-gradient-to-br from-purple-600/90 to-purple-500/90 hover:from-purple-500/90 hover:to-purple-400/90 text-white text-xs border-purple-500/50 shadow-purple-600/30 hover:shadow-purple-500/40"
+    memory: "bg-gradient-to-br from-purple-600/95 to-purple-700/95 hover:from-purple-500/95 hover:to-purple-600/95 text-white font-bold text-sm border-purple-500/60 shadow-purple-600/40 hover:shadow-purple-500/50"
   };
 
   return (
@@ -44,11 +44,11 @@ export const CalcButton: React.FC<CalcButtonProps> = ({
       onClick={onClick}
       className={cn(baseClasses, variantClasses[className as keyof typeof variantClasses])}
     >
-      {/* Shimmer effect */}
-      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+      {/* Enhanced shimmer effect */}
+      <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/25 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
       
-      {/* Button content */}
-      <span className="relative z-10">{value}</span>
+      {/* Button content with better contrast */}
+      <span className="relative z-10 drop-shadow-sm">{value}</span>
     </button>
   );
 };
