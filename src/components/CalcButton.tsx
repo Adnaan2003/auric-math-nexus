@@ -24,19 +24,19 @@ export const CalcButton: React.FC<CalcButtonProps> = ({
   );
 
   const variantClasses = {
-    number: "bg-gradient-to-br from-gray-700/90 to-gray-800/90 hover:from-gray-600/90 hover:to-gray-700/90 text-yellow-100 hover:text-white border-gray-600/50 hover:border-yellow-500/50 shadow-gray-900/50",
+    number: "bg-secondary hover:bg-secondary/80 text-secondary-foreground border-border hover:border-accent shadow-lg hover:shadow-xl",
     
-    operator: "bg-gradient-to-br from-yellow-600 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-gray-900 font-bold border-yellow-500/50 shadow-yellow-500/30 hover:shadow-yellow-400/40",
+    operator: "bg-primary hover:bg-primary/80 text-primary-foreground font-bold border-primary/50 shadow-lg hover:shadow-xl",
     
-    equals: "bg-gradient-to-br from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-gray-900 font-bold border-yellow-400/50 shadow-yellow-400/40 hover:shadow-yellow-300/50",
+    equals: "bg-accent hover:bg-accent/80 text-accent-foreground font-bold border-accent/50 shadow-lg hover:shadow-xl",
     
-    'equals-span': "bg-gradient-to-br from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-gray-900 font-bold border-yellow-400/50 shadow-yellow-400/40 hover:shadow-yellow-300/50 col-span-4",
+    'equals-span': "bg-accent hover:bg-accent/80 text-accent-foreground font-bold border-accent/50 shadow-lg hover:shadow-xl col-span-4",
     
-    clear: "bg-gradient-to-br from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white border-red-500/50 shadow-red-500/30 hover:shadow-red-400/40",
+    clear: "bg-destructive hover:bg-destructive/80 text-destructive-foreground border-destructive/50 shadow-lg hover:shadow-xl",
     
-    function: "bg-gradient-to-br from-blue-600/95 to-blue-700/95 hover:from-blue-500/95 hover:to-blue-600/95 text-white font-bold text-sm border-blue-500/60 shadow-blue-600/40 hover:shadow-blue-500/50",
+    function: "bg-muted hover:bg-muted/80 text-muted-foreground font-bold text-sm border-border shadow-lg hover:shadow-xl",
     
-    memory: "bg-gradient-to-br from-purple-600/95 to-purple-700/95 hover:from-purple-500/95 hover:to-purple-600/95 text-white font-bold text-sm border-purple-500/60 shadow-purple-600/40 hover:shadow-purple-500/50"
+    memory: "bg-sidebar-primary hover:bg-sidebar-primary/80 text-sidebar-primary-foreground font-bold text-sm border-sidebar-primary/50 shadow-lg hover:shadow-xl"
   };
 
   return (
