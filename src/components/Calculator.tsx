@@ -203,26 +203,26 @@ export const Calculator = () => {
   }, [handleInput]);
 
   return (
-    <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 w-full">
+    <div className="flex flex-col xl:flex-row gap-3 sm:gap-4 lg:gap-6 w-full max-w-full">
       {/* Main Calculator Section */}
-      <div className="flex-1 min-w-0">
-        <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl sm:rounded-3xl p-4 sm:p-6 lg:p-8 shadow-2xl border border-yellow-500/30 backdrop-blur-sm relative overflow-hidden">
+      <div className="flex-1 min-w-0 max-w-full">
+        <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-xl sm:rounded-2xl lg:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl border border-yellow-500/30 backdrop-blur-sm relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-r from-yellow-500/5 via-transparent to-yellow-500/5 pointer-events-none" />
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-yellow-400 to-transparent" />
           
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6 lg:mb-8 relative z-10 gap-4">
-            <div className="flex items-center gap-2 sm:gap-4">
-              <div className="p-2 sm:p-3 rounded-xl sm:rounded-2xl bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 border border-yellow-500/30">
-                <CalcIcon className="text-yellow-400" size={20} />
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 sm:mb-4 lg:mb-6 xl:mb-8 relative z-10 gap-3 sm:gap-4">
+            <div className="flex items-center gap-2 sm:gap-3 lg:gap-4">
+              <div className="p-1.5 sm:p-2 lg:p-3 rounded-lg sm:rounded-xl lg:rounded-2xl bg-gradient-to-br from-yellow-400/20 to-yellow-600/20 border border-yellow-500/30">
+                <CalcIcon className="text-yellow-400 w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
               </div>
               <div>
-                <h1 className="text-yellow-400 font-bold text-lg sm:text-xl lg:text-2xl bg-gradient-to-r from-yellow-200 to-yellow-500 bg-clip-text text-transparent">
+                <h1 className="text-yellow-400 font-bold text-base sm:text-lg md:text-xl lg:text-2xl bg-gradient-to-r from-yellow-200 to-yellow-500 bg-clip-text text-transparent">
                   FutureCalc Pro
                 </h1>
                 <p className="text-gray-400 text-xs sm:text-sm hidden sm:block">Advanced Scientific Calculator</p>
               </div>
             </div>
-            <div className="flex items-center gap-2 sm:gap-4 w-full sm:w-auto justify-end">
+            <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-4 w-full sm:w-auto justify-end">
               <ModeToggle
                 isScientific={isScientific}
                 onToggle={setIsScientific}
@@ -231,15 +231,15 @@ export const Calculator = () => {
               />
               <button
                 onClick={() => setShowGraph(!showGraph)}
-                className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 text-green-400 hover:from-green-500/30 hover:to-emerald-500/30 transition-all duration-300 border border-green-500/30 hover:scale-105 shadow-lg hover:shadow-green-500/20"
+                className="p-1.5 sm:p-2 lg:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 text-green-400 hover:from-green-500/30 hover:to-emerald-500/30 transition-all duration-300 border border-green-500/30 hover:scale-105 shadow-lg hover:shadow-green-500/20"
               >
-                <TrendingUp size={16} className="sm:w-5 sm:h-5" />
+                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
               <button
                 onClick={() => setShowHistory(!showHistory)}
-                className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 text-blue-400 hover:from-blue-500/30 hover:to-purple-500/30 transition-all duration-300 border border-blue-500/30 hover:scale-105 shadow-lg hover:shadow-blue-500/20"
+                className="p-1.5 sm:p-2 lg:p-3 rounded-lg sm:rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 text-blue-400 hover:from-blue-500/30 hover:to-purple-500/30 transition-all duration-300 border border-blue-500/30 hover:scale-105 shadow-lg hover:shadow-blue-500/20"
               >
-                <HistoryIcon size={16} className="sm:w-5 sm:h-5" />
+                <HistoryIcon className="w-4 h-4 sm:w-5 sm:h-5" />
               </button>
             </div>
           </div>
@@ -250,14 +250,14 @@ export const Calculator = () => {
             memory={memory}
           />
 
-          <div className="mb-4 sm:mb-6">
+          <div className="mb-3 sm:mb-4 lg:mb-6">
             <button
               onClick={() => setShowGraph(!showGraph)}
-              className="w-full py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold text-sm sm:text-base lg:text-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-green-500/25 border border-green-500/50 hover:scale-[1.02] relative overflow-hidden group"
+              className="w-full py-2.5 sm:py-3 lg:py-4 rounded-lg sm:rounded-xl lg:rounded-2xl bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-500 hover:to-emerald-500 text-white font-bold text-xs sm:text-sm md:text-base lg:text-lg transition-all duration-300 shadow-lg hover:shadow-2xl hover:shadow-green-500/25 border border-green-500/50 hover:scale-[1.02] relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
               <div className="flex items-center justify-center gap-2 sm:gap-3 relative z-10">
-                <TrendingUp size={20} className="sm:w-6 sm:h-6" />
+                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
                 <span>{showGraph ? 'Hide Graph' : 'Plot Graph f(x)'}</span>
               </div>
             </button>
@@ -273,9 +273,9 @@ export const Calculator = () => {
         </div>
       </div>
 
-      {/* Graph Section - Right Side */}
+      {/* Graph Section - Right Side on Desktop, Bottom on Mobile */}
       {showGraph && (
-        <div className="w-full lg:w-96 xl:w-[500px]">
+        <div className="w-full xl:w-96 2xl:w-[500px] xl:max-w-none max-w-full">
           <GraphPlotter 
             expression={expression || display}
             isDegrees={isDegrees}
@@ -284,9 +284,9 @@ export const Calculator = () => {
         </div>
       )}
 
-      {/* History Section - Right Side */}
+      {/* History Section - Right Side on Desktop, Bottom on Mobile */}
       {showHistory && !showGraph && (
-        <div className="w-full lg:w-80">
+        <div className="w-full xl:w-80 2xl:w-96 xl:max-w-none max-w-full">
           <History 
             history={history} 
             onClear={() => setHistory([])}
