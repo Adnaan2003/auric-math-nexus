@@ -5,6 +5,7 @@ import { ScientificKeypad } from './ScientificKeypad';
 import { History } from './History';
 import { ModeToggle } from './ModeToggle';
 import { GraphPlotter } from './GraphPlotter';
+import { LicenseActivation } from './LicenseActivation';
 import { Calculator as CalcIcon, History as HistoryIcon, TrendingUp } from 'lucide-react';
 
 export const Calculator = () => {
@@ -204,6 +205,11 @@ export const Calculator = () => {
 
   return (
     <div className="flex flex-col xl:flex-row gap-3 sm:gap-4 lg:gap-6 w-full max-w-full">
+      {/* License Activation Section */}
+      <div className="w-full xl:w-80 2xl:w-96 xl:max-w-none max-w-full xl:order-first">
+        <LicenseActivation />
+      </div>
+
       {/* Main Calculator Section */}
       <div className="flex-1 min-w-0 max-w-full">
         <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-xl sm:rounded-2xl lg:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl border border-yellow-500/30 backdrop-blur-sm relative overflow-hidden">
