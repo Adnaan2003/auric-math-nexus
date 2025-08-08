@@ -8,7 +8,7 @@ const Index = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-4 sm:mb-6 lg:mb-8">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400 mb-2">
-            Futuristic Scientific Calculator
+            Online Scientific Calculator
           </h1>
           <p className="text-sm sm:text-base text-gray-300">Advanced calculations with sleek design</p>
         </div>

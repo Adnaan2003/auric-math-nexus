@@ -217,7 +217,7 @@ export const Calculator = () => {
               </div>
               <div>
                 <h1 className="text-yellow-400 font-bold text-base sm:text-lg md:text-xl lg:text-2xl bg-gradient-to-r from-yellow-200 to-yellow-500 bg-clip-text text-transparent">
-                  FutureCalc Pro
+                  OnlineCalc Pro
                 </h1>
                 <p className="text-gray-400 text-xs sm:text-sm hidden sm:block">Advanced Scientific Calculator</p>
               </div>
