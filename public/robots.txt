@@ -12,3 +12,4 @@ Allow: /
 
 User-agent: *
 Allow: /
+Sitemap: https://auric-math-nexus.vercel.app/sitemap.xml
