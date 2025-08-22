@@ -1,0 +1,16 @@
+{
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "query",
+          "key": "m",
+          "value": "0"
+        }
+      ],
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
