@@ -10,6 +10,12 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# Other bots - allowed but slower crawling to reduce server load
 User-agent: *
 Allow: /
+Crawl-delay: 10
+
+# Sitemaps
 Sitemap: https://auric-math-nexus.vercel.app/sitemap.xml
+Sitemap: https://auric-math-nexus.vercel.app/sitemap.xml.gz
+Sitemap: https://auric-math-nexus.vercel.app/ror.xml
