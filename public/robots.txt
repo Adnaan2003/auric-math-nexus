@@ -1,3 +1,4 @@
+# ✅ Google, Bing, Twitter & Facebook bots
 User-agent: Googlebot
 Allow: /
 
@@ -10,12 +11,22 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
-# Other bots - allowed but slower crawling to reduce server load
+# ✅ All other bots (allowed but slower)
 User-agent: *
 Allow: /
 Crawl-delay: 10
 
-# Sitemaps
+# 🚫 Non-SEO sensitive/private areas
+Disallow: /api/
+Disallow: /admin/
+Disallow: /login/
+Disallow: /dashboard/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /user/
+Disallow: /account/
+
+# ✅ Sitemaps
 Sitemap: https://auric-math-nexus.vercel.app/sitemap.xml
 Sitemap: https://auric-math-nexus.vercel.app/sitemap.xml.gz
 Sitemap: https://auric-math-nexus.vercel.app/ror.xml
