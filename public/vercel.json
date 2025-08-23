@@ -1,16 +1,30 @@
 {
-  "redirects": [
+  "rewrites": [
     {
-      "source": "/",
-      "has": [
-        {
-          "type": "query",
-          "key": "m",
-          "value": "0"
-        }
-      ],
-      "destination": "/",
-      "permanent": true
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml.gz",
+      "destination": "/sitemap.xml.gz"
+    },
+    {
+      "source": "/sitemap.html",
+      "destination": "/sitemap.html"
+    },
+    {
+      "source": "/ror.xml",
+      "destination": "/ror.xml"
+    },
+    {
+      "source": "/urlist.txt",
+      "destination": "/urlist.txt"
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
